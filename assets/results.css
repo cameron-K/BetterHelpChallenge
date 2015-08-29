@@ -1,0 +1,10 @@
+#females,#males{
+	width:40%;
+	display: inline-block;
+	vertical-align: top;
+
+}
+#container{
+	width:90%;
+	margin:20px auto;
+}
