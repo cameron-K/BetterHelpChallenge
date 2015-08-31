@@ -51,9 +51,25 @@ class Results extends CI_Controller {
 	}
 
 	public function display(){
+		// $questions=$this->result->getQuestions();
 		$f_answers=$this->result->getResults(1);
 		$m_answers=$this->result->getResults(2);
+		// echo "<h1>females</h1>";
+		// var_dump($f_answers);
+		
+		// var_dump($m_answers);
+		$males_json=json_encode($this->result->getAnswers(2));
+		$females_json=json_encode($this->result->getAnswers(1));
+		$questions_json=json_encode($this->result->getQuestions());
 
-		$this->load->view('results',array('f_answers'=>$f_answers,'m_answers'=>$m_answers));
+		
+
+		// print_r($males_json);
+		// echo "<h1>males</h1>";
+		// print_r($females_json);
+		// echo "<h1>questions</h1>";
+		// print_r($questions_json);
+
+		$this->load->view('results',array('f_answers'=>$f_answers,'m_answers'=>$m_answers,'questions'=>$questions_json,'m_json'=>$males_json,'f_json'=>$females_json));
 	}
 }

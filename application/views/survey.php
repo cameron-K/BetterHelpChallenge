@@ -6,6 +6,9 @@
 </head>
 <body>
 	<a href="/results">View Results</a>
+	<?php 
+	 	echo "<br>".$this->session->flashdata('error');
+	  ?>
 	<form action='/submit' method='POST'>
 		
 	
@@ -25,10 +28,10 @@
 					$q_type='checkbox';
 				}
 				if($q_type=='radio'){
-					echo $choice['choice']."<input type=".$q_type." value=".$choice['id']." name=".$question['id']."><br>";
+					echo "<input type=".$q_type." value=".$choice['id']." name=".$question['id'].">".$choice['choice']."<br>";
 				}
 				else{
-					echo $choice['choice']."<input type=".$q_type." value=".$choice['id']." name=".$question['id']."[]><br>";
+					echo "<input type=".$q_type." value=".$choice['id']." name=".$question['id']."[]>".$choice['choice']."<br>";
 				}
 				
 			}
@@ -39,8 +42,5 @@
 	 ?>
 	 	<input type='submit' value='submit'>
 	 </form>
-	 <?php 
-	 	echo $this->session->flashdata('error');
-	  ?>
 </body>
 </html>

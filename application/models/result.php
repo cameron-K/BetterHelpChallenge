@@ -39,4 +39,23 @@ class Result extends CI_Model{
 		return $this->db->query($query,array($gender))->result_array();
 	}
 
+	function getQuestions(){
+		$query="SELECT questions.id,questions.question FROM questions
+				WHERE id!=1";
+		return $this->db->query($query)->result_array();
+	}
+
+	function getAnswers($gender){
+		$query="SELECT *,COUNT(results.choice_id) AS choice_cnt FROM choices LEFT JOIN results 
+				ON choices.id=results.choice_id 
+				LEFT JOIN questions 
+				ON choices.question_id=questions.id 
+				WHERE results.survey_number IN (SELECT survey_number FROM results WHERE choice_id=?) 
+				AND results.choice_id!=?
+				GROUP BY choices.id
+				ORDER BY questions.list_order";
+
+		return $this->db->query($query,array($gender,$gender))->result_array();
+	}
+
 }

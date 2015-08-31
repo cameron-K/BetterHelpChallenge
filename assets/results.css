@@ -8,3 +8,17 @@
 	width:90%;
 	margin:20px auto;
 }
+
+.fheader,.mheader{
+	width:50%;
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 5px;
+}
+.chart{
+	display: inline-block;
+	vertical-align: top;
+	width: 50%;
+	text-align: center;
+}
