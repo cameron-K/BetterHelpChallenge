@@ -24,15 +24,22 @@ class Result extends CI_Model{
 	function getResults($gender){
 		//if gender==1 : is female
 		//if gender==2 : is male
-		$query="SELECT DISTINCT * FROM (SELECT results.*,questions.question AS q,questions.list_order AS list_order,questions.id AS q_id,choices.choice AS ch, COUNT(choice_id) AS tally  from results
-				LEFT JOIN choices 
-				ON results.choice_id=choices.id 
-				LEFT JOIN questions 
-				ON choices.question_id=questions.id 
-				WHERE results.survey_number IN (SELECT survey_number from results where choice_id=?)
-				AND questions.id!=1
-				GROUP BY choice_id
-				ORDER BY tally DESC) AS t1
+		$query="SELECT DISTINCT q,ch,tally FROM (
+
+					SELECT results.*,questions.question AS q,
+					questions.list_order AS list_order,
+					questions.id AS q_id,choices.choice AS ch,
+					COUNT(choice_id) AS tally  from results
+					LEFT JOIN choices 
+					ON results.choice_id=choices.id 
+					LEFT JOIN questions 
+					ON choices.question_id=questions.id 
+					WHERE results.survey_number IN (SELECT survey_number from results where choice_id=?)
+					AND questions.id!=1
+					GROUP BY choice_id
+					ORDER BY tally DESC
+
+				) AS t1
 				GROUP BY q_id
 				ORDER BY q_id";
 
@@ -46,11 +53,15 @@ class Result extends CI_Model{
 	}
 
 	function getAnswers($gender){
-		$query="SELECT *,COUNT(results.choice_id) AS choice_cnt FROM choices LEFT JOIN results 
+		$query="SELECT choices.choice,choices.question_id,
+				COUNT(results.choice_id) AS choice_cnt FROM choices 
+				LEFT JOIN results 
 				ON choices.id=results.choice_id 
 				LEFT JOIN questions 
 				ON choices.question_id=questions.id 
-				WHERE results.survey_number IN (SELECT survey_number FROM results WHERE choice_id=?) 
+				WHERE results.survey_number IN (
+					SELECT survey_number FROM results WHERE choice_id=?
+					) 
 				AND results.choice_id!=?
 				GROUP BY choices.id
 				ORDER BY choices.id";

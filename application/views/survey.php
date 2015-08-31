@@ -7,7 +7,7 @@
 <body>
 	<a href="/results">View Results</a>
 	<?php 
-	 	echo "<br><span style='color:red'".$this->session->flashdata('error')."</span>";
+	 	echo "<br><span style='color:red'>".$this->session->flashdata('error')."</span>";
 	  ?>
 	<form action='/submit' method='POST'>
 		
@@ -33,7 +33,6 @@
 				else{
 					echo "<input type=".$q_type." value=".$choice['id']." name=".$question['id']."[]>".$choice['choice']."<br>";
 				}
-				
 			}
 		}
 			$q_num++;

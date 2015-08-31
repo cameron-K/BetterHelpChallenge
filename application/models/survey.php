@@ -3,13 +3,13 @@
 class Survey extends CI_Model{
 
 	function getQuestions(){
-		$query="SELECT * FROM questions
+		$query="SELECT id,question,radio FROM questions
 				ORDER BY list_order";
 		return $this->db->query($query)->result_array();
 	}
 
 	function getChoices(){
-		$query="SELECT * FROM choices";
+		$query="SELECT id,choice,question_id FROM choices";
 		return $this->db->query($query)->result_array();
 	}
 
