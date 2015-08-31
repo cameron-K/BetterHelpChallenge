@@ -47,7 +47,7 @@ $(document).ready(function(){
 			var fid='chartfemale'+questions[q].id;
 			var mid='chartmale'+questions[q].id;
 			$('#charts').append('<div class="chart" id='+fid+'></div><div class="chart" id='+mid+'></div>').append('<div class="header_div" ><h4 class="fheader">Females</h4><h4 class="mheader">Males</h4></div>');
-
+			
 			
 			//females
 			var chart = c3.generate({

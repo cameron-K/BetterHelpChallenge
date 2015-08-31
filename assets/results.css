@@ -22,3 +22,7 @@
 	width: 50%;
 	text-align: center;
 }
+.choices{
+	display: inline-block;
+	vertical-align: top;
+}
