@@ -53,7 +53,7 @@ class Result extends CI_Model{
 				WHERE results.survey_number IN (SELECT survey_number FROM results WHERE choice_id=?) 
 				AND results.choice_id!=?
 				GROUP BY choices.id
-				ORDER BY questions.list_order";
+				ORDER BY choices.id";
 
 		return $this->db->query($query,array($gender,$gender))->result_array();
 	}
