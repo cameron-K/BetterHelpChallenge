@@ -7,7 +7,7 @@
 <body>
 	<a href="/results">View Results</a>
 	<?php 
-	 	echo "<br>".$this->session->flashdata('error');
+	 	echo "<br><span style='color:red'".$this->session->flashdata('error')."</span>";
 	  ?>
 	<form action='/submit' method='POST'>
 		
